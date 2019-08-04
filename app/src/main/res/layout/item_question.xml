@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Bold
+                android:id="@+id/question_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="6dp"
+                android:text="Question : " />
+
+            <ImageButton
+                android:id="@+id/categoryExpandBtn"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="#FFF"
+                android:src="@drawable/ic_arrow_down"
+                android:layout_width="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutHolder"
+                android:layout_below="@+id/question_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+
+               <!-- <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/ic_account" />-->
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="10"
+                    android:layout_width="0dp">
+
+             <!--       <TextView
+                        android:id="@+id/categoryTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fruits &amp; Vegetables"
+                        android:textSize="16sp" />
+-->
+                    <TextView
+                        android:id="@+id/categoryDescription"
+                        android:layout_weight="9"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:justificationMode="inter_word"
+                        android:layout_width="0dp" />
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/innerRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearLayoutHolder"
+                android:background="#f6f6f6"
+                android:visibility="gone">
+
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

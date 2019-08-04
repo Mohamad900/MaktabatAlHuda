@@ -1,0 +1,26 @@
+<resources>
+    <!-- bottom navigation menu-->
+    <string name="app_name">BIBLIOTECA ISLÂMICA</string>
+    <string name="title_home">Home</string>
+    <string name="category">Categorias</string>
+    <string name="search">Procurar por</string>
+
+    <string name="new_books">Novos livros</string>
+    <string name="view_more">MAIS</string>
+    <string name="recommended">Sugeridos</string>
+    <string name="popular">As mais conhecidas</string>
+    <string name="read">Ler</string>
+    <string name="remove_book">Excluir livro</string>
+    <string name="no_books_found">Não há livros</string>
+    <string name="books_loading_failed">Falha ao baixar o livro</string>
+    <string name="no_internet_connection">Não é possível conectar-se ao servidor</string>
+    <string name="about">Quem somos</string>
+    <string name="mylibrary">Meu acervo</string>
+    <string name="profile">Perfil</string>
+    <string name="loading_failed">Falha ao baixar</string>
+    <string name="questions">Perguntas e Respostas</string>
+    <string name="failed_load_categories">Falha ao carregar categorias de livros</string>
+    <string name="something_wrong">Há um falha</string>
+
+
+</resources>

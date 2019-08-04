@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="11.5dp"
+    android:orientation="vertical">
+
+    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_MediumItalic
+        android:id="@+id/cat_name"
+        android:layout_width="98dp"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Not found"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="@color/white"
+        android:background="@drawable/round_corner"
+        />
+
+</LinearLayout>

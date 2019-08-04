@@ -1,0 +1,365 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="fragment.ProfileFragment">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/blue_gradient" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:elevation="3dp">
+
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="176dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="47dp"
+                        android:layout_marginRight="10dp"
+                        android:elevation="5dp">
+
+                        <com.loopeer.shadow.ShadowView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#FFFFFF"
+                            android:elevation="@dimen/_10sdp"
+                            app:shadowMargin="@dimen/_3sdp"
+                            app:shadowRadius="@dimen/_10sdp"
+                            android:foreground="?attr/selectableItemBackground"
+                            app:cornerRadius="10dp">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/rounded_corner_5dp"
+                                android:orientation="vertical">
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="30dp"
+                                    android:orientation="vertical">
+
+                                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="45dp"
+                                        android:text="@string/app_name"
+                                        android:textColor="#4f4f4f"
+                                        android:textSize="18.5sp" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="14dp"
+                                        android:orientation="horizontal">
+
+                                        <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular
+                                            android:id="@+id/phoneNumber"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#b9b6b6"
+                                            android:textSize="14sp" />
+                                        <View
+                                            android:id="@+id/borderView"
+                                            android:visibility="gone"
+                                            android:layout_width="1dp"
+                                            android:layout_height="15dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginRight="5dp"
+                                            android:background="#b9b6b6"/>
+
+                                        <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular
+                                            android:id="@+id/email"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#b9b6b6"
+                                            android:textSize="14sp" />
+
+                                    </LinearLayout>
+
+
+
+                                </LinearLayout>
+
+                              <!--  <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:layout_marginTop="31dp"
+                                    android:background="#ecefef"
+                                    android:orientation="horizontal">
+
+
+                                 &lt;!&ndash;   <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Bold
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="13.5dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Available Balance"
+                                        android:textColor="#382385"
+                                        android:textSize="12.5sp"/>
+
+                                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Bold
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rs. 432"
+                                        android:layout_marginRight="13dp"
+                                        android:layout_gravity="center"
+                                        android:textSize="14.5sp"
+                                        android:textColor="#47ae36"/>&ndash;&gt;
+
+
+                                </LinearLayout>-->
+                            </LinearLayout>
+
+
+
+                        </com.loopeer.shadow.ShadowView>
+
+                    </FrameLayout>
+
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/circle"
+                        android:elevation="5dp"
+                        android:src="@drawable/logo" />
+
+                </FrameLayout>
+
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/sendQuestion"
+                    android:padding="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.5dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_marginLeft="13.5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_send_question"/>
+
+                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Envie uma pergunta"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+             <LinearLayout
+                android:id="@+id/questions"
+                android:padding="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20.5dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginLeft="13.5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_question_answer"/>
+
+                <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/questions"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+               <!-- <LinearLayout
+                    android:id="@+id/facebook"
+                    android:padding="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.5dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_marginLeft="13.5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/facebook_icon"/>
+
+                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Follow us on Facebook"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>-->
+
+              <!--  <LinearLayout
+                    android:id="@+id/instagram"
+                    android:padding="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.5dp"
+                    android:layout_marginLeft="13.5dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/instagram_icon"/>
+
+                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Follow us on Instagram"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/about"
+                    android:padding="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.5dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_marginLeft="13.5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_about"/>
+
+                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/about"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/rate"
+                    android:padding="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.5dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_marginLeft="13.5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_rate"/>
+
+                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Avaliar o App"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/share"
+                    android:padding="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.5dp"
+                    android:layout_marginLeft="13.5dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_share"/>
+
+                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compartilhar App"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            </ScrollView>
+
+</LinearLayout>

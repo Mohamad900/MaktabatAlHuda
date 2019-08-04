@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.loopeer.shadow.ShadowView
+        android:id="@+id/shadow_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_10sdp"
+        app:shadowMargin="@dimen/_3sdp"
+        app:shadowRadius="@dimen/_10sdp"
+        android:foreground="?attr/selectableItemBackground"
+        app:cornerRadius="7dp">
+
+
+        <LinearLayout
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/item_category_shape"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+
+            <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular
+                android:id="@+id/txt_cat_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingLeft="@dimen/_10sdp"
+                android:text="Action"
+                android:textColor="#4d4c49"
+                android:textSize="@dimen/_12ssp" />
+
+            <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular
+                android:id="@+id/txt_cat_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:text="(34)"
+                android:paddingRight="@dimen/_10sdp"
+                android:textColor="#4d4c49"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+
+    </com.loopeer.shadow.ShadowView>
+</RelativeLayout>

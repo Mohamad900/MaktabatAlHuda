@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ViewAnimator
+        android:id="@+id/switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@color/actionbar_background_semitransp">
+
+            <ImageButton
+                android:id="@+id/closeReader"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCloseReaderButtonClick"
+                android:padding="4dp"
+                android:src="@drawable/ic_back_api" />
+
+            <ImageButton
+                android:id="@+id/moreButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/closeReader"
+                android:background="@drawable/button"
+                android:contentDescription="@string/more"
+                android:onClick="OnMoreButtonClick"
+                android:padding="8dp"
+                android:src="@drawable/ic_more_api_3" />
+
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/moreButton"
+                android:background="@drawable/button"
+                android:contentDescription="@string/search_document"
+                android:padding="5dp"
+                android:src="@drawable/ic_search_api" />
+
+            <TextView
+                android:id="@+id/txtEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_background"
+                android:drawableLeft="@drawable/ic_edit_file"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
+                android:text="@string/edit"
+                android:textColor="@color/actionbar_background"
+                android:textSize="17sp" />
+
+
+            <!--
+                        <ImageButton
+                            android:id="@+id/searchButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/moreButton"
+                            android:contentDescription="@string/search_document"
+                            android:background="@drawable/button"
+                            android:src="@drawable/ic_search" />
+
+                        <ImageButton
+                            android:id="@+id/moreButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:contentDescription="@string/more"
+                            android:background="@drawable/button"
+                            android:onClick="OnMoreButtonClick"
+                            android:src="@drawable/ic_more" />
+            -->
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar1Search"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@color/actionbar_background_semitransp">
+
+            <ImageButton
+                android:id="@+id/cancelSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelSearchButtonClick"
+                android:padding="12dp"
+                android:src="@drawable/ic_back_api" />
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchBack"
+                android:layout_toRightOf="@+id/cancelSearch"
+                android:background="@drawable/search"
+                android:hint="@string/search"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <ImageButton
+                android:id="@+id/searchBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchForward"
+                android:background="@drawable/button"
+                android:contentDescription="@string/search_backwards"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_left_api" />
+
+            <ImageButton
+                android:id="@+id/searchForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button"
+                android:contentDescription="@string/search_forwards"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_right_api" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/topBar4More"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/actionbar_background_semitransp">
+
+            <ImageButton
+                android:id="@+id/cancelMoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelMoreButtonClick"
+                android:padding="12dp"
+                android:src="@drawable/ic_back_api" />
+
+            <ImageButton
+                android:id="@+id/printButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button"
+                android:contentDescription="@string/print"
+                android:onClick="OnPrintButtonClick"
+                android:padding="12dp"
+                android:src="@drawable/ic_print_api" />
+
+        </RelativeLayout>
+
+    </ViewAnimator>
+
+    <LinearLayout
+        android:id="@+id/toolLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switcher"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp">
+
+            <LinearLayout
+                android:id="@+id/highlightButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_mark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/highlight"
+                    android:textColor="@color/text_tool" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/underlineButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_underline" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/underline"
+                    android:textColor="@color/text_tool" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/copyButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_copy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/copy"
+                    android:textColor="@color/text_tool" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:id="@+id/strikeButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_strike_out" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/strike_through"
+                    android:textColor="@color/text_tool" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/drawButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_draw" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/draw"
+                    android:textColor="@color/text_tool" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/deleteButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_erase" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:textColor="@color/text_tool" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutCancelOrFinish"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/switcher"
+        android:background="@color/actionbar_background_semitransp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/cancelEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/button_background_negative"
+            android:contentDescription="@string/cancel"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/imgTool"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:padding="9dp"
+            android:src="@drawable/ic_draw" />
+
+        <TextView
+            android:id="@+id/finishEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:text="@string/finish"
+            android:textColor="@color/actionbar_background" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutDelete"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/switcher"
+        android:background="@color/actionbar_background_semitransp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/cancelDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/button_background_negative"
+            android:contentDescription="@string/cancel"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:id="@+id/txtDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@color/actionbar_background" />
+
+
+    </RelativeLayout>
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/layoutEdit">-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/green"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:src="@drawable/green" />-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/blue"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:padding="10dp"-->
+    <!--android:src="@drawable/blue" />-->
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/lowerButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <FrameLayout
+            android:id="@+id/PreviewBarHolder"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="0dp"
+            android:background="@color/actionbar_background_semitransp" />
+
+        <TextView
+            android:id="@+id/pageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/PreviewBarHolder"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/page_num"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/PreviewBarHolder"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/page_num"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

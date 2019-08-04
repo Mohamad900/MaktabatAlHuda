@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- main color -->
+    <color name="colorPrimary">#18a2d5<!--#2196F3--></color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!-- base color -->
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="red">#F44336</color>
+    <color name="blue">#2196F3</color>
+    <color name="green">#4CAF50</color>
+    <color name="yellow">#f8e71c</color>
+    <color name="yellowDark">#f5a623</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="purple">#9C27B0</color>
+    <color name="teal">#009688</color>
+    <color name="brown">#795548</color>
+    <color name="light_grey">#f6f6f6</color>
+    <color name="dividerColor">#B6B6B6</color>
+    <color name="black1">#727272</color>
+
+    <!--Navigation color-->
+    <color name="bottomNavigationBackgroundColor">#FAFAFA</color>
+    <color name="toolbarBackgroundColor">#FAFAFA</color>
+    <color name="recyclerview_title_color">#24221f</color>
+
+    <!--PDF-->
+    <color name="actionbar_background">#E45F40</color>
+    <color name="actionbar_background_dark">#E45F40</color>
+    <color name="actionbar_background_semitransp">#E45F40</color>
+    <color name="actionbar_tint">#FFFFFF</color>
+    <color name="text_normal">#CCCCCC</color>
+
+</resources>

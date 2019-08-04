@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.maktabat.al.huda">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:icon">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.BooksActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BookDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name="com.artifex.mupdflib.MuPDFActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppReaderTheme" />
+        <activity
+            android:name="com.artifex.mupdflib.PrintDialogActivity"
+            android:label="@string/print"
+            android:theme="@style/AppReaderTheme" />
+        <activity
+            android:name="com.artifex.mupdflib.PDFPreviewGridActivity"
+            android:label="preview label"
+            android:theme="@style/AppReaderTheme" />
+        <activity
+            android:name=".activity.BooksByCategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.QuestionsActivity"></activity>
+    </application>
+
+</manifest>

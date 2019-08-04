@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingStart="8dp"
+    android:layout_height="wrap_content">
+
+    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Bold
+        android:id="@+id/answer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Answer : "
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:layout_margin="12dp"
+        android:textSize="15sp" />
+
+    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular
+        android:id="@+id/itemTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:layout_below="@+id/answer_title"
+        android:layout_margin="12dp"
+        android:textSize="12sp" />
+
+</RelativeLayout>
