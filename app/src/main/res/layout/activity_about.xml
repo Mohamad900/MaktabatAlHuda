@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="fragment.ProfileFragment">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="520dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/blue_gradient" />
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:elevation="3dp">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="410dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginRight="10dp"
+                android:elevation="5dp">
+
+                <com.loopeer.shadow.ShadowView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:elevation="@dimen/_10sdp"
+                    app:shadowMargin="@dimen/_3sdp"
+                    app:shadowRadius="@dimen/_10sdp"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cornerRadius="10dp">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="30dp"
+                            android:orientation="vertical">
+
+                            <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="45dp"
+                                android:lineSpacingExtra="@dimen/_4ssp"
+                                android:text="@string/aboutus_content"
+                                android:textColor="#4f4f4f"
+                                android:paddingEnd="14dp"
+                                android:paddingStart="14dp"
+                                android:layout_marginBottom="20dp"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                    </ScrollView>
+
+                </com.loopeer.shadow.ShadowView>
+
+            </FrameLayout>
+
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle"
+                android:elevation="5dp"
+                android:src="@drawable/logo" />
+
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

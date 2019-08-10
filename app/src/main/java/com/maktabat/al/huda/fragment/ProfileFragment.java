@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.maktabat.al.huda.R;
+import com.maktabat.al.huda.activity.AboutActivity;
 import com.maktabat.al.huda.activity.QuestionsActivity;
 import com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular;
 import com.maktabat.al.huda.model.Question;
@@ -85,7 +86,7 @@ public class ProfileFragment extends Fragment {
 
                 try {
                     if (response.body() != null) {
-                        borderView.setVisibility(View.VISIBLE);
+                        if(borderView!=null) borderView.setVisibility(View.VISIBLE);
                         phoneNumber.setText(response.body().getPhoneNumber());
                         email.setText(response.body().getEmail());
                     } else {
@@ -94,7 +95,7 @@ public class ProfileFragment extends Fragment {
                         email.setText("");
                     }
                 } catch (Exception e) {
-                    borderView.setVisibility(View.GONE);
+                    if(borderView!=null)borderView.setVisibility(View.GONE);
                     phoneNumber.setText("");
                     email.setText("");
                 }
@@ -150,11 +151,14 @@ public class ProfileFragment extends Fragment {
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SweetAlertDialog(context, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+               /* new SweetAlertDialog(context, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
                         .setTitleText("About us!")
                         .setContentText("The Islamic Library provides you with the best books, permanently and orderly, and provides an easy user interface")
                         .setCustomImage(R.drawable.ic_about)
-                        .show();
+                        .show();*/
+
+                Intent intent = new Intent(context, AboutActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -193,7 +197,8 @@ public class ProfileFragment extends Fragment {
 
     private void showAlertDialog() {
 
-        dialogBuilder = new AlertDialog.Builder(context).create();
+
+       dialogBuilder = new AlertDialog.Builder(context).create();
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.send_question_alert_dialog, null);
 

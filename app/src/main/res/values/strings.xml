@@ -21,6 +21,17 @@
     <string name="questions">Perguntas e Respostas</string>
     <string name="failed_load_categories">Falha ao carregar categorias de livros</string>
     <string name="something_wrong">Há um falha</string>
+    <string name="aboutus_content">
+        Quem somos?
+        \n \n
+Em nome de Deus, o Clemente, o Misericordioso.
+\n \n
+Louvado seja Deus, o Senhor do universo. Que a paz e as bênçãos de Deus estejam com o Profeta Mohammad (S.A.A.S.), seus purificados Ahlul Bait (A.S.), seus bons companheiros, todos os profetas e mensageiros, e também com todos aqueles que os seguem verdadeiramente até o dia do Juízo Final.\n\n Este aplicativo foi criado pela Associação Cultural Al-Huda, sediada na cidade de São Paulo, no Brasil, e visa abordar a linha de pensamento e ensinamentos islâmicos em suas diversas áreas, tais como: crença, prática, história, interpretação do Alcorão Sagrado, jurisprudência, moral, ética e educação.\n\n Tudo isto funcionando como uma fonte fidedigna de conhecimento e informação extraídos diretamente dos ensinamentos puros e originais do Islam,longe de qualquer radicalismo cego ou preconceito, especialmente após as campanhas de difamação que atacaram e atacam a imagem do Islam por todos os lados.\n\n Quase que a maioria do que é divulgado sobre o Islam nas redes de informação são difamações que não possuem qualquer ligação com a verdadeira doutrina de nossa religião.\n\n Sendo assim, tomamos como nossa responsabilidade religiosa e social a criação de uma Biblioteca Islâmica digital em forma de aplicativo,contendo obras na língua portuguesa, para que possamos preencher o vazio existente neste campo de conhecimento, isso levando em conta que a grande maioria das pessoas não dominam a língua árabe e apreciam ler e se informar através de dispositivos digitais.
+\n\n
+Rogamos a Deus que aceite esta ação humilde, e que nos ajude a divulgar o conhecimento sobre o Islam e os muçulmanos. Ele é Ouvinte!
+\n \n
+Louvado Seja Deus, o Senhor do universo!
+    </string>
 
 
 </resources>

@@ -48,7 +48,8 @@
         <activity
             android:name=".activity.BooksByCategoryActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.QuestionsActivity"></activity>
+        <activity android:name=".activity.QuestionsActivity" />
+        <activity android:name=".activity.AboutActivity"></activity>
     </application>
 
 </manifest>
