@@ -3,12 +3,9 @@ package com.maktabat.al.huda.fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -24,7 +21,6 @@ import android.widget.TextView;
 import com.maktabat.al.huda.R;
 import com.maktabat.al.huda.activity.BooksByCategoryActivity;
 import com.maktabat.al.huda.adapter.CategoriesFragmentAdapter;
-import com.maktabat.al.huda.adapter.Home_NewBooksAdapter;
 import com.maktabat.al.huda.adapter.RecommendedCategories_Adapter;
 import com.maktabat.al.huda.model.Book;
 import com.maktabat.al.huda.model.Category;
@@ -35,8 +31,6 @@ import com.maktabat.al.huda.util.Utils;
 
 import org.parceler.Parcels;
 
-import java.io.IOException;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +62,10 @@ public class CategoryFragment extends Fragment {
     TextView connection;
     @BindView(R.id.scroll)
     ScrollView scroll;
-    @BindView(R.id.swiperefresh_items)
-    SwipeRefreshLayout swiperefreshItems;
+    @BindView(R.id.recommended_cat_not_found_title)
+    TextView recommendedCatNotFoundTitle;
+    //@BindView(R.id.swiperefresh_items)
+    //SwipeRefreshLayout swiperefreshItems;
     private ArrayList<Category> recommendedCategoriesArrayList;
     private ArrayList<Category> categoriesArrayList;
     private ArrayList<Book> booksArrayList;
@@ -97,22 +93,24 @@ public class CategoryFragment extends Fragment {
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Baixar....");
-
-        swiperefreshItems.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        categoriesArrayList = new ArrayList<>();
+        /*swiperefreshItems.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 GetAllCategories();
             }
-        });
+        });*/
 
-        if(Utils.checkIfNewForCategories(context)){
+        if (Utils.checkIfNewForCategories(context)) {
             GetAllCategories();
             Utils.changeNewForCategories(context);
-        }else{
+        } else {
 
             if (Utils.hasCacheDataForCategories(context)) {
                 scroll.setVisibility(View.VISIBLE);
                 connection.setVisibility(View.GONE);
+                recommendedCatNotFoundTitle.setVisibility(View.GONE);
+
                 categoriesArrayList = new ArrayList<>();
                 categoriesArrayList = Utils.getCacheDataForCategories(context);
                 gridAdapter = new CategoriesFragmentAdapter(context, categoriesArrayList);
@@ -124,11 +122,15 @@ public class CategoryFragment extends Fragment {
                         recommendedCategoriesArrayList.add(category);
                     }
                 }
-                RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
-                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
-                recommendedRecycleview.setLayoutManager(linearLayoutManager1);
-                recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
-                recommendedRecycleview.setAdapter(adapter_category);
+                if(recommendedCategoriesArrayList.size()>0) {
+                    RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
+                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
+                    recommendedRecycleview.setLayoutManager(linearLayoutManager1);
+                    recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
+                    recommendedRecycleview.setAdapter(adapter_category);
+                }else{
+                    recommendedCatNotFoundTitle.setVisibility(View.VISIBLE);
+                }
 
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -136,7 +138,7 @@ public class CategoryFragment extends Fragment {
                         GetBooksByCategory(i);
                     }
                 });
-            }else{
+            } else {
                 scroll.setVisibility(View.GONE);
                 connection.setText("Não foram encontradas categorias");
                 connection.setVisibility(View.VISIBLE);
@@ -151,12 +153,13 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<List<Category>> call, @NonNull Response<List<Category>> response) {
                 progressDialog.dismiss();
-                if(swiperefreshItems!=null)swiperefreshItems.setRefreshing(false);
+                //if(swiperefreshItems!=null)swiperefreshItems.setRefreshing(false);
                 if (response.body() != null) {
 
-                    if(response.body().size()>0) {
+                    if (response.body().size() > 0) {
                         scroll.setVisibility(View.VISIBLE);
                         connection.setVisibility(View.GONE);
+                        recommendedCatNotFoundTitle.setVisibility(View.GONE);
 
                         categoriesArrayList = new ArrayList<>();
                         recommendedCategoriesArrayList = new ArrayList<>();
@@ -172,13 +175,19 @@ public class CategoryFragment extends Fragment {
                                     recommendedCategoriesArrayList.add(category);
                                 }
                             }
+                            if(recommendedCategoriesArrayList.size()>0) {
 
-                            RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
-                            LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
-                            recommendedRecycleview.setLayoutManager(linearLayoutManager1);
-                            recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
-                            recommendedRecycleview.setAdapter(adapter_category);
-                            Utils.saveCacheDataForCatgeories(context,categoriesArrayList);
+                                RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
+                                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
+                                recommendedRecycleview.setLayoutManager(linearLayoutManager1);
+                                recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
+                                recommendedRecycleview.setAdapter(adapter_category);
+
+                            }else{
+                                recommendedCatNotFoundTitle.setVisibility(View.VISIBLE);
+                            }
+
+                            Utils.saveCacheDataForCatgeories(context, categoriesArrayList);
 
                             //add listener
                             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -207,18 +216,23 @@ public class CategoryFragment extends Fragment {
                                         recommendedCategoriesArrayList.add(category);
                                     }
                                 }
-                                RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
-                                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
-                                recommendedRecycleview.setLayoutManager(linearLayoutManager1);
-                                recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
-                                recommendedRecycleview.setAdapter(adapter_category);
+                                if(recommendedCategoriesArrayList.size()>0) {
+                                    RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
+                                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
+                                    recommendedRecycleview.setLayoutManager(linearLayoutManager1);
+                                    recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
+                                    recommendedRecycleview.setAdapter(adapter_category);
+                                }else{
+                                    recommendedCatNotFoundTitle.setVisibility(View.VISIBLE);
+                                }
+
                             } else {
                                 scroll.setVisibility(View.GONE);
                                 connection.setText("Não foram encontradas categorias");
                                 connection.setVisibility(View.VISIBLE);
                             }
                         }
-                    }else{
+                    } else {
                         Utils.clearCacheDataForCategories(context);
                         scroll.setVisibility(View.GONE);
                         connection.setText("Não foram encontradas categorias");
@@ -226,7 +240,7 @@ public class CategoryFragment extends Fragment {
                     }
                 } else {
 
-                    if(Utils.hasCacheDataForCategories(context)) {
+                    if (Utils.hasCacheDataForCategories(context)) {
                         scroll.setVisibility(View.VISIBLE);
                         connection.setVisibility(View.GONE);
                         gridAdapter = new CategoriesFragmentAdapter(context, Utils.getCacheDataForCategories(context));
@@ -244,12 +258,17 @@ public class CategoryFragment extends Fragment {
                                 recommendedCategoriesArrayList.add(category);
                             }
                         }
-                        RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
-                        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
-                        recommendedRecycleview.setLayoutManager(linearLayoutManager1);
-                        recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
-                        recommendedRecycleview.setAdapter(adapter_category);
-                    }else{
+                        if(recommendedCategoriesArrayList.size()>0) {
+                            RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
+                            LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
+                            recommendedRecycleview.setLayoutManager(linearLayoutManager1);
+                            recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
+                            recommendedRecycleview.setAdapter(adapter_category);
+                        }else{
+                            recommendedCatNotFoundTitle.setVisibility(View.VISIBLE);
+                        }
+
+                    } else {
                         scroll.setVisibility(View.GONE);
                         connection.setText("o carregamento de categorias falhou");
                         connection.setVisibility(View.VISIBLE);
@@ -261,9 +280,9 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<List<Category>> call, @NonNull Throwable t) {
                 progressDialog.dismiss();
-                if(swiperefreshItems!=null)swiperefreshItems.setRefreshing(false);
+                //if(swiperefreshItems!=null)swiperefreshItems.setRefreshing(false);
 
-                if(Utils.hasCacheDataForCategories(context)) {
+                if (Utils.hasCacheDataForCategories(context)) {
                     scroll.setVisibility(View.VISIBLE);
                     connection.setVisibility(View.GONE);
                     gridAdapter = new CategoriesFragmentAdapter(context, Utils.getCacheDataForCategories(context));
@@ -281,12 +300,17 @@ public class CategoryFragment extends Fragment {
                             recommendedCategoriesArrayList.add(category);
                         }
                     }
-                    RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
-                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
-                    recommendedRecycleview.setLayoutManager(linearLayoutManager1);
-                    recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
-                    recommendedRecycleview.setAdapter(adapter_category);
-                }else{
+                    if(recommendedCategoriesArrayList.size()>0) {
+                        RecommendedCategories_Adapter adapter_category = new RecommendedCategories_Adapter(getActivity(), recommendedCategoriesArrayList);
+                        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), OrientationHelper.HORIZONTAL, false);
+                        recommendedRecycleview.setLayoutManager(linearLayoutManager1);
+                        recommendedRecycleview.setItemAnimator(new DefaultItemAnimator());
+                        recommendedRecycleview.setAdapter(adapter_category);
+                    }else{
+                        recommendedCatNotFoundTitle.setVisibility(View.VISIBLE);
+                    }
+
+                } else {
                     scroll.setVisibility(View.GONE);
                     connection.setText(getResources().getString(R.string.no_internet_connection));
                     connection.setVisibility(View.VISIBLE);
@@ -299,7 +323,7 @@ public class CategoryFragment extends Fragment {
     private void GetBooksByCategory(int position) {
         progressDialog.show();
         BookInterface bookInterface = RetrofitInstance.getRetrofitInstance().create(BookInterface.class);
-        bookInterface.getBooksByCategory(categoriesArrayList.get(position)).enqueue(new Callback<List<Book>>() {
+        bookInterface.getBooksByCategory(categoriesArrayList.size() == 0 || categoriesArrayList == null ? null : categoriesArrayList.get(position)).enqueue(new Callback<List<Book>>() {
             @Override
             public void onResponse(@NonNull Call<List<Book>> call, @NonNull Response<List<Book>> response) {
                 progressDialog.dismiss();

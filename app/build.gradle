@@ -6,10 +6,11 @@ android {
         applicationId "com.maktabat.al.huda"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
+        versionCode 7
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk.abiFilters 'armeabi', 'x86_64', 'armeabi-v7a', 'x86', 'mips',"arm64-v8a"
     }
     buildTypes {
         release {
@@ -17,6 +18,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+configurations.all {
+    // To resolve the conflict for com.android.databinding
+    // dependency on support-v4:21.0.3
+    resolutionStrategy.force 'com.android.support:support-v4:28.0.0'
+    resolutionStrategy.force 'com.android.support:support-v7:28.0.0'
 }
 
 dependencies {
@@ -35,6 +43,11 @@ dependencies {
     implementation 'com.github.ceryle:FitGridView:v1.0.5'
     compile 'com.github.f0ris.sweetalert:library:1.5.1'
     compile 'com.github.ceryle:RadioRealButton:v2.1.1'
+
+    //pdf lib
+    compile 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
+
+
     //Networking library : Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
@@ -50,7 +63,9 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:1.1.1"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 
+
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
@@ -59,3 +74,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':yopdf')
 }
+

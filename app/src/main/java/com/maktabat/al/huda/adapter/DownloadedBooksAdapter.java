@@ -1,24 +1,27 @@
 package com.maktabat.al.huda.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.preference.PreferenceManager;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.artifex.mupdflib.MuPDFActivity;
+import com.artifex.mupdfdemo.MuPDFActivity;
 import com.maktabat.al.huda.R;
 import com.maktabat.al.huda.Room.AppDatabase;
+import com.maktabat.al.huda.activity.PDFViewerActivity;
 import com.maktabat.al.huda.model.Book;
 import com.maktabat.al.huda.util.Utils;
 
@@ -96,7 +99,8 @@ public class DownloadedBooksAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToEdit(currentItem.getAbsolutePath(),true);
+                openReaderPicker(currentItem.getAbsolutePath());
+                //goToEdit(currentItem.getAbsolutePath(),true);
             }
         });
 
@@ -140,29 +144,68 @@ public class DownloadedBooksAdapter extends BaseAdapter {
         popup.show();
     }
 
-    private void goToEdit(String filePath, boolean edit) {
-        Uri uri = Uri.parse(filePath);
+    private void openReaderPicker(final String filePath){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.pdf_reader_picker,null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPrefs.edit().putString("prefKeyLanguage", "en").apply();
-        //Uri uri = Uri.parse("file:///android_asset/" + TEST_FILE_NAME);
-        Intent intent = new Intent(context, MuPDFActivity.class);
-        intent.setAction(Intent.ACTION_VIEW);
-        if (!edit)
-            intent.putExtra("edit", false);
-        intent.setData(uri);
-        //if document protected with password
-        intent.putExtra("password", "encrypted PDF password");
-        //if you need highlight link boxes
-        intent.putExtra("linkhighlight", true);
-        //if you don't need device sleep on reading document
-        intent.putExtra("idleenabled", false);
-        //set true value for horizontal page scrolling, false value for vertical page scrolling
-        intent.putExtra("horizontalscrolling", true);
-        //document name
-        intent.putExtra("docname", "PDF document name");
+        LinearLayout custom = dialogView.findViewById(R.id.custom_pdf_reader);
+        LinearLayout defaultReader = dialogView.findViewById(R.id.default_pdf_reader);
 
+        custom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToEdit(filePath,true);
+                dialog.hide();
+            }
+        });
+
+        defaultReader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDefaultPDFReader(filePath);
+                dialog.hide();
+            }
+        });
+
+    }
+
+    private void openDefaultPDFReader(String filePath) {
+        Intent intent = new Intent(context,PDFViewerActivity.class);
+        intent.putExtra("FilePath",filePath);
         context.startActivity(intent);
+    }
 
+    private void goToEdit(String filePath, boolean edit) {
+
+        try {
+            Uri uri = Uri.parse(filePath);
+
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            sharedPrefs.edit().putString("prefKeyLanguage", "en").apply();
+            //Uri uri = Uri.parse("file:///android_asset/" + TEST_FILE_NAME);
+            Intent intent = new Intent(context, MuPDFActivity.class);
+            intent.setAction(Intent.ACTION_VIEW);
+            if (!edit)
+                intent.putExtra("edit", false);
+            intent.setData(uri);
+            //if document protected with password
+            intent.putExtra("password", "encrypted PDF password");
+            //if you need highlight link boxes
+            intent.putExtra("linkhighlight", true);
+            //if you don't need device sleep on reading document
+            intent.putExtra("idleenabled", false);
+            //set true value for horizontal page scrolling, false value for vertical page scrolling
+            intent.putExtra("horizontalscrolling", true);
+            //document name
+            intent.putExtra("docname", "PDF document name");
+
+            context.startActivity(intent);
+        }catch (Exception e){
+            Log.d("pdf error",e.getMessage());
+        }
     }
 }

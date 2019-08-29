@@ -1,24 +1,23 @@
 package com.maktabat.al.huda.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.artifex.mupdflib.MuPDFActivity;
+import com.artifex.mupdfdemo.MuPDFActivity;
 import com.maktabat.al.huda.R;
 import com.maktabat.al.huda.Room.AppDatabase;
 import com.maktabat.al.huda.configs.Constants;
@@ -30,14 +29,12 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -149,6 +146,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     private class DownloadFile extends AsyncTask<String, String, Boolean> {
 
         private ProgressDialog progressDialog;
+        File file;
 
         /**
          * Before starting background thread
@@ -185,7 +183,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                 // input stream to read file - with 8k buffer
                 InputStream input = new BufferedInputStream(url.openStream(), 8192);
                 File dir = getApplicationContext().getFilesDir();
-                File file = new File(dir, book.id + ".pdf");
+                file = new File(dir, book.id + ".pdf");
 
                 // Output stream to write file
                 FileOutputStream output = new FileOutputStream(file);
@@ -224,7 +222,8 @@ public class BookDetailsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                goToEdit(file.getAbsolutePath());
+                //goToEdit(file.getAbsolutePath());
+
 
                 return true;
 
@@ -261,8 +260,44 @@ public class BookDetailsActivity extends AppCompatActivity {
                 remove.setVisibility(View.VISIBLE);
                 downloadTitle.setText(getResources().getString(R.string.remove_book));
                 downloadTitle.setGravity(Gravity.CENTER);
+                openReaderPicker(file.getAbsolutePath());
             }
         }
+    }
+
+    private void openReaderPicker(final String filePath){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View dialogView = inflater.inflate(R.layout.pdf_reader_picker,null);
+        builder.setView(dialogView);
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        LinearLayout custom = dialogView.findViewById(R.id.custom_pdf_reader);
+        LinearLayout defaultReader = dialogView.findViewById(R.id.default_pdf_reader);
+
+        custom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToEdit(filePath);
+                dialog.hide();
+            }
+        });
+
+        defaultReader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDefaultPDFReader(filePath);
+                dialog.hide();
+            }
+        });
+
+    }
+
+    private void openDefaultPDFReader(String filePath) {
+        Intent intent = new Intent(context,PDFViewerActivity.class);
+        intent.putExtra("FilePath",filePath);
+        context.startActivity(intent);
     }
 
     private void goToEdit(String filePath) {

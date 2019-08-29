@@ -462,7 +462,7 @@ public class HomeFragment extends Fragment implements BaseSliderView.OnSliderCli
                 progressDialog.dismiss();
                 if(swiperefreshItems!=null)swiperefreshItems.setRefreshing(false);
                 new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Carregamento falhou...")
+                        //.setTitleText(getResources().getString(R.string.loading_failed))
                         .setContentText(getResources().getString(R.string.no_internet_connection)).show();
 
                 if(Utils.hasCacheDataForRecommendedBooks(context)){

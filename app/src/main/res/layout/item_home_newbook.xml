@@ -64,12 +64,15 @@
                         android:text="" />
 
                 <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
-                    android:layout_width="64dp"
+                    android:layout_width="67dp"
                     android:layout_height="26dp"
                     android:background="@drawable/round_corner"
                     android:textSize="12.5sp"
                     android:gravity="center"
                     android:text="Detalhes"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:paddingStart="2dp"
                     android:layout_marginEnd="14.3dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"

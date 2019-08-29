@@ -116,7 +116,7 @@ public class ProfileFragment extends Fragment {
                 try {
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("text/plain");
-                    i.putExtra(Intent.EXTRA_SUBJECT, "BIBLIOTECA ISLAMICA");
+                    i.putExtra(Intent.EXTRA_SUBJECT, "BIBLIOTECA ISLÂMICA");
                     String sAux = "http://play.google.com/store/apps/details?id=" + context.getPackageName();
                     i.putExtra(Intent.EXTRA_TEXT, sAux);
                     startActivity(Intent.createChooser(i, "escolha um"));

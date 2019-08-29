@@ -11,7 +11,6 @@
         android:layout_width="108dp"
         android:layout_height="155dp"
         android:scaleType="fitXY"
-        android:src="@drawable/subtl_art"
         app:siShape="@drawable/shape_rounded_book"
         />
 
@@ -23,6 +22,8 @@
         android:layout_height="wrap_content"
         android:textSize="13.5sp"
         android:gravity="center"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:layout_marginTop="16dp"
         android:textColor="@color/black"/>
 

@@ -128,7 +128,7 @@ public class BooksActivity extends AppCompatActivity {
                 noBooksFoundTitle.setVisibility(View.VISIBLE);
                 booksRecycleview.setVisibility(View.GONE);
                 new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("O carregamento falhou...")
+                        .setTitleText(getResources().getString(R.string.loading_failed))
                         .setContentText(getResources().getString(R.string.no_internet_connection)).show();
             }
         });

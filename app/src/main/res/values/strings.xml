@@ -1,6 +1,6 @@
 <resources>
     <!-- bottom navigation menu-->
-    <string name="app_name">BIBLIOTECA ISLÂMICA</string>
+    <string name="app_name">Biblioteca Islâmica</string>
     <string name="title_home">Home</string>
     <string name="category">Categorias</string>
     <string name="search">Procurar por</string>
