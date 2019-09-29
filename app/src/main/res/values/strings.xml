@@ -17,8 +17,10 @@
     <string name="about">Quem somos</string>
     <string name="mylibrary">Meu acervo</string>
     <string name="profile">Perfil</string>
+    <string name="login_failed">Falha na autenticação</string>
     <string name="loading_failed">Falha ao baixar</string>
     <string name="questions">Perguntas e Respostas</string>
+    <string name="emptyFields">Por favor preencha todos os campos</string>
     <string name="failed_load_categories">Falha ao carregar categorias de livros</string>
     <string name="something_wrong">Há um falha</string>
     <string name="aboutus_content">
@@ -32,6 +34,7 @@ Rogamos a Deus que aceite esta ação humilde, e que nos ajude a divulgar o conh
 \n \n
 Louvado Seja Deus, o Senhor do universo!
     </string>
+    <string name="register">REGISTER</string>
 
 
 </resources>

@@ -160,7 +160,7 @@
             <ScrollView
                 android:scrollbars="none"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -196,7 +196,7 @@
 
                 </LinearLayout>
 
-             <LinearLayout
+                <LinearLayout
                 android:id="@+id/questions"
                 android:padding="6dp"
                 android:layout_width="match_parent"
@@ -222,60 +222,6 @@
                     android:layout_gravity="center"/>
 
             </LinearLayout>
-
-               <!-- <LinearLayout
-                    android:id="@+id/facebook"
-                    android:padding="6dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20.5dp"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:layout_marginLeft="13.5dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/facebook_icon"/>
-
-                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Follow us on Facebook"
-                        android:textSize="15sp"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>-->
-
-              <!--  <LinearLayout
-                    android:id="@+id/instagram"
-                    android:padding="6dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20.5dp"
-                    android:layout_marginLeft="13.5dp"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/instagram_icon"/>
-
-                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Follow us on Instagram"
-                        android:textSize="15sp"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"/>
-
-                </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/about"
@@ -351,6 +297,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Compartilhar App"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/signout"
+                    android:padding="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20.5dp"
+                    android:layout_marginLeft="13.5dp"
+                    android:layout_marginBottom="18dp"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_exit"/>
+
+                    <com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Medium
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sair"
                         android:textSize="15sp"
                         android:layout_marginLeft="20dp"
                         android:textColor="@color/black"

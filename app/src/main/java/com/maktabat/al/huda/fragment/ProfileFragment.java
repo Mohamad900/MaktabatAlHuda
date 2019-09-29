@@ -1,5 +1,6 @@
 package com.maktabat.al.huda.fragment;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -11,19 +12,30 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.maktabat.al.huda.R;
 import com.maktabat.al.huda.activity.AboutActivity;
+import com.maktabat.al.huda.activity.LoginActivity;
 import com.maktabat.al.huda.activity.QuestionsActivity;
+import com.maktabat.al.huda.activity.QuestionsCategoriesActivity;
+import com.maktabat.al.huda.adapter.QuestionsCategoriesAdapter;
 import com.maktabat.al.huda.customfonts.MyTextView_Ubuntu_Regular;
+import com.maktabat.al.huda.model.Category;
 import com.maktabat.al.huda.model.Question;
 import com.maktabat.al.huda.model.Settings;
 import com.maktabat.al.huda.network.Apis.QuestionInterface;
 import com.maktabat.al.huda.network.Apis.SettingsInterface;
 import com.maktabat.al.huda.network.RetrofitInstance;
+import com.maktabat.al.huda.util.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,8 +72,12 @@ public class ProfileFragment extends Fragment {
     LinearLayout sendQuestion;
     @BindView(R.id.about)
     LinearLayout about;
+    @BindView(R.id.signout)
+    LinearLayout signout;
     private Context context;
     AlertDialog dialogBuilder;
+    ProgressDialog progressDialog;
+    ArrayList<Category> categoriesArrayList;
 
     @Override
     public void onAttach(Context context) {
@@ -86,7 +102,7 @@ public class ProfileFragment extends Fragment {
 
                 try {
                     if (response.body() != null) {
-                        if(borderView!=null) borderView.setVisibility(View.VISIBLE);
+                        if (borderView != null) borderView.setVisibility(View.VISIBLE);
                         phoneNumber.setText(response.body().getPhoneNumber());
                         email.setText(response.body().getEmail());
                     } else {
@@ -95,7 +111,7 @@ public class ProfileFragment extends Fragment {
                         email.setText("");
                     }
                 } catch (Exception e) {
-                    if(borderView!=null)borderView.setVisibility(View.GONE);
+                    if (borderView != null) borderView.setVisibility(View.GONE);
                     phoneNumber.setText("");
                     email.setText("");
                 }
@@ -110,6 +126,22 @@ public class ProfileFragment extends Fragment {
     }
 
     private void init() {
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Baixar....");
+
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Utils.setLogin(context,false);
+                Intent intent = new Intent(context, LoginActivity.class);
+                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +197,7 @@ public class ProfileFragment extends Fragment {
         questions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, QuestionsActivity.class);
+                Intent intent = new Intent(context, QuestionsCategoriesActivity.class);
                 startActivity(intent);
             }
         });
@@ -173,46 +205,98 @@ public class ProfileFragment extends Fragment {
         sendQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showAlertDialog();
+                GetAllCategories();
+                //showAlertDialog();
             }
         });
-/*
-        instagram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Uri.parse("http://instagram.com/_u/moh20abd");
-                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
 
-                likeIng.setPackage("com.instagram.android");
-
-                try {
-                    startActivity(likeIng);
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://instagram.com/moh20abd")));
-                }
-            }
-        });*/
     }
 
-    private void showAlertDialog() {
+    private void GetAllCategories() {
+        progressDialog.show();
+        QuestionInterface categoryInterface = RetrofitInstance.getRetrofitInstance().create(QuestionInterface.class);
+        categoryInterface.getQuestionsCategories().enqueue(new Callback<List<Category>>() {
+            @Override
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+                progressDialog.dismiss();
+                if (response.body() != null) {
+                    if (response.body().size() > 0) {
+                        categoriesArrayList = new ArrayList<>();
+                        categoriesArrayList.addAll(response.body());
 
+                        ArrayList<String> categoriesNames = new ArrayList<String>();
 
-       dialogBuilder = new AlertDialog.Builder(context).create();
+                        for(int i=0;i<response.body().size();i++){
+                            categoriesNames.add(categoriesArrayList.get(i).name);
+                        }
+                        showAlertDialog(categoriesNames);
+
+                    } else {
+                        categoriesArrayList = null;
+                        showAlertDialog(new ArrayList<String>());
+                        new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("Nenhuma categoria").show();
+                    }
+                } else {
+                    categoriesArrayList = null;
+                    showAlertDialog(new ArrayList<String>());
+                    new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Falha ao carregar categorias").show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Category>> call, Throwable t) {
+                progressDialog.dismiss();
+                categoriesArrayList = null;
+                showAlertDialog(new ArrayList<String>());
+                new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Falha ao carregar categorias").show();
+            }
+        });
+    }
+
+    private void showAlertDialog(final ArrayList<String> categoriesName) {
+
+        final int[] selectedCategoryPosition = new int[1];
+        dialogBuilder = new AlertDialog.Builder(context).create();
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.send_question_alert_dialog, null);
 
         final EditText editText = (EditText) dialogView.findViewById(R.id.user_question);
         Button sendButton = dialogView.findViewById(R.id.sendButton);
+        final Spinner spinnerCategories = dialogView.findViewById(R.id.spinnerCategories);
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(context, android.R.layout.simple_spinner_item, categoriesName);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategories.setAdapter(arrayAdapter);
+
+        spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+
+                selectedCategoryPosition[0] = position;
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editText.getText().toString() == null || editText.getText().toString().trim().equals("")) {
+                if (editText.getText().toString() == null || editText.getText().toString().trim().equals("") || categoriesArrayList == null) {
                     new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Por favor, adicione sua pergunta").show();
                 } else {
-                    sendQuestion(editText.getText().toString());
+                    sendQuestion(editText.getText().toString(),selectedCategoryPosition[0]);
                 }
             }
         });
@@ -220,14 +304,15 @@ public class ProfileFragment extends Fragment {
         dialogBuilder.show();
     }
 
-    private void sendQuestion(String question) {
-
+    private void sendQuestion(String question, int categoryId) {
+        progressDialog.show();
         QuestionInterface questionInterface = RetrofitInstance.getRetrofitInstance().create(QuestionInterface.class);
-        Question questionObj = new Question(question);
+        Question questionObj = new Question(question,null,categoriesArrayList.get(categoryId).getId());
         questionInterface.sendQuestion(questionObj).enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
-                if(dialogBuilder!=null)dialogBuilder.dismiss();
+                progressDialog.dismiss();
+                if (dialogBuilder != null) dialogBuilder.dismiss();
                 try {
                     if (response.body() != null) {
 
@@ -251,7 +336,8 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
-                if(dialogBuilder!=null)dialogBuilder.dismiss();
+                progressDialog.dismiss();
+                if (dialogBuilder != null) dialogBuilder.dismiss();
                 new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("O envio de perguntas falhou").show();
             }

@@ -1,5 +1,7 @@
 package com.maktabat.al.huda.model;
 
+import android.arch.persistence.room.Ignore;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -21,11 +23,20 @@ public class Question {
     @SerializedName("Response")
     @Expose
     public String response;
+    @SerializedName("Category")
+    @Expose
+    @Ignore
+    public Category category;
 
     @ParcelConstructor
     public Question(String userQuestion, String response) {
         this.userQuestion = userQuestion;
         this.response = response;
+    }
+
+    public Question(String userQuestion, String response, String categoryId) {
+        this.userQuestion = userQuestion;
+        this.category = new Category(categoryId,null);
     }
 
     public Question(String userQuestion) {

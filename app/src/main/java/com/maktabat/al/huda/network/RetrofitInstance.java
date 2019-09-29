@@ -26,8 +26,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance extends Activity {
 
-   public static final String BASE_URL="http://alhuda-library.info/api/";
-   //public static final String BASE_URL="http://192.168.1.105:8080/api/";
+   //public static final String BASE_URL="http://alhuda-library.info/api/";
+   public static final String BASE_URL="http://192.168.1.105:8080/api/";
 
     private static Retrofit retrofit = null;
 

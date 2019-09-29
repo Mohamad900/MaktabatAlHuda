@@ -2,6 +2,7 @@ package com.maktabat.al.huda.network.Apis;
 
 import com.maktabat.al.huda.model.Category;
 import com.maktabat.al.huda.model.Question;
+import com.maktabat.al.huda.model.QuestionCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,14 @@ import retrofit2.http.POST;
  */
 
 public interface QuestionInterface {
-    @POST("Question/GetAllFilteredQuestions")
-    Call<List<Question>> getAllFilteredQuestions();
+
+    @POST("Question/GetAllFilteredQuestionsByCategory")
+    Call<List<Question>> GetAllFilteredQuestionsByCategory(@Body QuestionCategory category);
+
     @POST("Question/SendQuestion")
     Call<Boolean> sendQuestion(@Body Question questionObj);
+
+    @POST("Question/GetQuestionsCategoriesDetails")
+    Call<List<Category>> getQuestionsCategories();
+
 }

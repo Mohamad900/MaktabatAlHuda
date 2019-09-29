@@ -30,6 +30,11 @@ public class Category {
         this.name = name;
     }
 
+    public Category(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @ParcelConstructor
     public Category(String id, String name, String numberOfBooks) {
         this.id = id;

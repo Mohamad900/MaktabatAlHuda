@@ -39,6 +39,22 @@ import java.util.List;
 
 public class Utils {
 
+    public static void setLogin(Context context,Boolean value){
+        SharedPreferences prefs = context.getSharedPreferences("Login", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putBoolean("IsLoggedIn",value);
+        edit.apply();
+    }
+
+    public static Boolean readLogin(Context context){
+        try {
+            SharedPreferences prefs = context.getSharedPreferences("Login", Context.MODE_PRIVATE);
+            return prefs.getBoolean("IsLoggedIn", false);
+        }catch (Exception e){
+            return false;
+        }
+    }
+
     public static void setNewForBooksAndCategories(Context context){
         SharedPreferences prefs = context.getSharedPreferences("CacheData", Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = prefs.edit();

@@ -23,6 +23,9 @@
     <color name="dividerColor">#B6B6B6</color>
     <color name="black1">#727272</color>
 
+    <!--signup-->
+    <color name="primaryTextColor">#00a5ff</color>
+
     <!--Navigation color-->
     <color name="bottomNavigationBackgroundColor">#FAFAFA</color>
     <color name="toolbarBackgroundColor">#FAFAFA</color>

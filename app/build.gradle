@@ -10,7 +10,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk.abiFilters 'armeabi', 'x86_64', 'armeabi-v7a', 'x86', 'mips',"arm64-v8a"
+        ndk.abiFilters 'armeabi', 'x86_64', 'armeabi-v7a', 'x86', 'mips', "arm64-v8a"
     }
     buildTypes {
         release {
@@ -43,10 +43,10 @@ dependencies {
     implementation 'com.github.ceryle:FitGridView:v1.0.5'
     compile 'com.github.f0ris.sweetalert:library:1.5.1'
     compile 'com.github.ceryle:RadioRealButton:v2.1.1'
+    compile 'com.github.ganfra:material-spinner:1.1.1'
 
     //pdf lib
     compile 'com.github.barteksc:android-pdf-viewer:3.1.0-beta.1'
-
 
     //Networking library : Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -74,4 +74,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':yopdf')
 }
+
+
+
 

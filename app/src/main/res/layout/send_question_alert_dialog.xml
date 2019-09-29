@@ -13,6 +13,19 @@
         android:textColor="#24221f"
         android:text="Envie uma pergunta"/>
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione a Categoria"/>
+
+    <Spinner
+        android:id="@+id/spinnerCategories"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        style="@style/mySpinnerItemStyle"
+        android:layout_height="wrap_content"/>
+
     <EditText
         android:id="@+id/user_question"
         android:layout_width="match_parent"
